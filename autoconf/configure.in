@@ -208,7 +208,7 @@ if test "x$enable_warn" = "xyes"; then
 fi
 
 if test "x$GCC" = "xyes"; then
-   LDFLAGS="$LDFLAGS -rdynamic"
+   LDFLAGS="$LDFLAGS -Wl,--export-dynamic"
 fi
 
 dnl# done with flags - lets export those for our children to use :

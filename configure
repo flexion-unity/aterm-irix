@@ -4572,7 +4572,7 @@ if test "x$enable_warn" = "xyes"; then
 fi
 
 if test "x$GCC" = "xyes"; then
-   LDFLAGS="$LDFLAGS -rdynamic"
+   LDFLAGS="$LDFLAGS -Wl,--export-dynamic"
 fi
 
 export CFLAGS
