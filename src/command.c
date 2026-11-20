@@ -52,6 +52,9 @@ static const char rcsid[] = "$Id: command.c,v 1.24 2006/06/26 18:01:20 sasha Exp
 #include "libAfterStep/event.h"
 #endif
 
+#include <pwd.h>
+
+
 #define TT_PRINTF_LIMIT		1024
 
 #if defined(OFFIX_DND) || defined(TRANSPARENT)
@@ -89,7 +92,7 @@ static const char rcsid[] = "$Id: command.c,v 1.24 2006/06/26 18:01:20 sasha Exp
 # include <grp.h>
 #endif
 
-#if defined (__svr4__) || defined (__lnx21__)
+#if 0
 # include <sys/resource.h>	/* for struct rlimit */
 # include <sys/stropts.h>	/* for I_PUSH */
 # define _NEW_TTY_CTRL		/* to get proper defines in <termios.h> */
@@ -672,7 +675,7 @@ get_tty(void)
 	print_error("can't open slave tty %s", ttydev);
 	exit(EXIT_FAILURE);
     }
-#if defined (__svr4__) || defined (__lnx21__)
+#if 0
 /*
  * Push STREAMS modules:
  *    ptem: pseudo-terminal hardware emulation module.
@@ -1134,9 +1137,12 @@ run_command(char *argv[])
 	    print_error("can't execute \"%s\"", argv[0]);
 	} else {
 	    const char     *argv0, *shell;
-
-	    if ((shell = getenv("SHELL")) == NULL || *shell == '\0')
-		shell = DEFAULT_SHELL;
+	    if ((shell = getenv("SHELL")) == NULL || *shell == '\0') {
+			struct passwd* pwent = getpwuid (getuid());
+			if ((NULL == pwent) || (NULL == (shell = pwent->pw_shell)) || ((char) 0 == *shell)) {
+				shell = DEFAULT_SHELL;
+			}
+		}
 
 	    argv0 = my_basename(shell);
 	    if (Options & Opt_loginShell) {

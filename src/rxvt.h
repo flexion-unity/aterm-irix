@@ -564,7 +564,7 @@ typedef struct MwmHints {
 # define OLD_WORD_SELECTION
 #endif
 
-#define DEFAULT_SHELL "/bin/bash"
+#define DEFAULT_SHELL "/bin/tcsh"
 
 /* sort out conflicts in feature.h */
 #ifdef KANJI
