@@ -19,7 +19,6 @@ DIST_ETC  = etc/rxvt.termcap etc/rxvt.terminfo etc/XTerm.ad
 DIST_MENU = menu/menu menu/example.menu menu/rxvt.menu menu/terminal.menu\
 	    menu/jedmenu.sl
 DIST	  = Makefile.in README.thai README.greek README.menu README.xvt FAQ aterm.1
-	     
 
 #-------------------------------------------------------------------------
 
