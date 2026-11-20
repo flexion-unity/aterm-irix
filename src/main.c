@@ -2087,10 +2087,10 @@ main(int argc, char *argv[])
 #endif
 
 	ConnectX ( &Scr, 0 );
-    Xdisplay = dpy ;
-    Xscreen = Scr.screen ;
+       Xscreen = Scr.screen ;
 	asv = Scr.asv ;
 
+	Xdisplay = asv->dpy;
 	Xcmap = asv->colormap;
 	Xdepth = asv->visual_info.depth;
 	Xvisual = asv->visual_info.visual;
@@ -2125,7 +2125,6 @@ main(int argc, char *argv[])
 	XdisplayHeight = DisplayHeight (Xdisplay, Xscreen);
 
 #ifdef HAVE_AFTERIMAGE
-	dpy = Xdisplay ;
 	asv = create_asvisual (Xdisplay, Xscreen, Xdepth, NULL);
 	Xcmap = asv->colormap;
 	Xdepth = asv->visual_info.depth;
