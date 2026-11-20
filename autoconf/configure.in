@@ -292,7 +292,7 @@ AFTERSTEP_LIB=
 
 dnl# if needed - check for external libAfterImage and libAfterBase :
 AC_MSG_CHECKING(if distributed as part of AfterStep)
-if test -d ../../libAfterBase && -d ../../libAfterImage && -d ../../libAfterStep ; then 
+if test -d ../../libAfterBase && test -d ../../libAfterImage && test -d ../../libAfterStep ; then 
 	LIBAFTERIMAGE_CFLAGS=
 	LIBAFTERSTEP_CFLAGS=-I../../..
 	AFTERIMAGE_LIBS=-L../../../libAfterImage -L../../../libAfterBase -lAfterImage -lAfterBase `../../libAfterImage/afterimage-config --libs --external-only` 
@@ -312,6 +312,8 @@ else
 				afterimage_config=/usr/local/bin/afterimage-config 
 			fi
 		fi
+	elif test "$afterimage_config" = "no" ; then
+	    afterimage_config=false
 	else
 	    afterimage_config=$afterimage_config/afterimage-config
 	fi
