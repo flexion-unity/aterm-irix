@@ -1,10 +1,12 @@
-## aterm - for IRIX
+# aterm - for IRIX
 
 Original aterm 1.0.1 source can be found at:
 ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2
 
+<img src="./aterm.jpg" width="759">
 
-# Modifications
+
+## Modifications
 
 - applied stropts patch
 - applied dpy patch
@@ -19,30 +21,40 @@ ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2
 
 - command.c: changed DEFAULT_SHELL to query passwd file for users shell.
 
-- k14: no changes required
 
-
-# Compile
+## Compile
 
 use mipspro cc compiler
 
+```sh
 $ setenv CC cc
 $ ./configure --without-afterimage-config
 $ make
+```
 
+## Transparency
 
-# Transparency
+To start with (fake) transparency:
 
+```sh
 ./aterm -tr -sh 50 -bg black -fg cyan
+```
+
+Example .auxchestrc launcher entry:
+
+`"aterm" f.checkexec.sh.le "/usr/bin/aterm -tr -sh 50 -bg black -fg cyan -sl 1500"`
+
 
 uses aterm built-in shading (no libAfterImage needed) when you configure with `--without-afterimage-config`
 
 Requirements:
 
-- the X servers default visual must be TrueColor. 
+The X servers default visual must be TrueColor. 
 Check with:
 
+  ```sh
     $ xdpyinfo | grep -A4 "default visual"
+  ```
 
   If it reports 8-bit PseudoColor, `-tr` still works but `-sh`/`-tint`
   will have no effect. Start Xsgi with a 24-bit TrueColor default visual,
