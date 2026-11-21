@@ -1,10 +1,11 @@
 # aterm - for IRIX
 
-Original aterm 1.0.1 source can be found at:
-ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2
+aterm terminal for IRIX, with fake transparency.
 
 <img src="./aterm.jpg" width="759">
 
+Original aterm 1.0.1 source can be found at:
+ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2
 
 ## Modifications
 
@@ -27,9 +28,9 @@ ftp://ftp.afterstep.org/apps/aterm/aterm-1.0.1.tar.bz2
 use mipspro cc compiler
 
 ```sh
-$ setenv CC cc
-$ ./configure --without-afterimage-config
-$ make
+setenv CC cc
+./configure --without-afterimage-config
+make
 ```
 
 ## Transparency
@@ -37,7 +38,7 @@ $ make
 To start with (fake) transparency:
 
 ```sh
-./aterm -tr -sh 50 -bg black -fg cyan
+/usr/bin/aterm -tr -sh 50 -bg black -fg cyan
 ```
 
 Example .auxchestrc launcher entry:
@@ -53,7 +54,7 @@ The X servers default visual must be TrueColor.
 Check with:
 
   ```sh
-    $ xdpyinfo | grep -A4 "default visual"
+xdpyinfo | grep -A4 "default visual"
   ```
 
   If it reports 8-bit PseudoColor, `-tr` still works but `-sh`/`-tint`
